@@ -32,7 +32,6 @@ serialPort.on('open', function(){
   var lastValue;
   io.sockets.on('connection', function (socket) {
       
-
       console.log('Socket connected');
       socket.emit('connected');
       var lastValue;
