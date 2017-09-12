@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 app.use(cors());
-var server = app.listen(3000, function () {
+var server = app.listen(5000, function () {
 
   var host = server.address().address
   var port = server.address().port
@@ -31,14 +31,14 @@ serialPort.on('open', function(){
 
   var lastValue;
   io.sockets.on('connection', function (socket) {
-      
+
       console.log('Socket connected');
       socket.emit('connected');
       var lastValue;
 
       serialPort.on('data', function(data){
         //console.log(data.toString());
-        var jsonData = JSON.parse(data.toString());//kormaangala mgRoad bellandur rv
+        var jsonData = JSON.parse(data.toString());
           if(lastValue !== data.toString()){
           	if(jsonData["bulb_1"] === "ON" && jsonData["bulb_2"] === "ON" && jsonData["bulb_3"] === "ON" && jsonData["bulb_4"] === "ON"){
               socket.emit('news', '{"bulb":[],"msg":"NONE OFF"}');
